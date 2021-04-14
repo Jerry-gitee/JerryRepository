@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jie.mapper.CarMapper">
+
+    <!--    ****************************增删改*****************************-->
+
+    <!--        增加车辆-->
+    <insert id="addCar" parameterType="car">
+                insert into smmcar.car (car_number, car_brand, car_status, user_id, car_imge)
+                VALUES (#{car_number},#{car_brand},#{car_status},#{user_id},#{car_imge})
+        </insert>
+
+    <!--        修改管理员-->
+    <update id="updateCar" parameterType="car">
+                update smmcar.car
+                set car_number=#{car_number},
+                car_brand=#{car_brand},
+                car_status=#{car_status},
+                user_id=#{user_id},
+                carport=#{carport},
+                car_imge=#{car_imge}
+                where car_id=#{car_id}
+        </update>
+
+    <!--        通过id删除管理员-->
+    <delete id="deleteCar">
+                delete from smmcar.car where car_id=#{car_id}
+        </delete>
+
+    <!--    ****************************查*****************************-->
+
+    <!--        通过id查找管理员-->
+    <select id="queryCarByUserId" resultType="car">
+                select * from smmcar.car where user_id=#{user_id}
+        </select>
+
+    <select id="queryCarByCarId" resultType="car">
+                select * from smmcar.car where car_id=#{car_id}
+        </select>
+
+    <!--    ****************************分页*****************************-->
+
+    <!--    查找总行数-->
+    <select id="getCountByUserIdAndCarNumberLike" resultType="int">
+        select count(*) from smmcar.car
+        <where>
+            <if test="user_id != null">
+                user_id like "%"#{user_id}"%"
+            </if>
+            <if test="car_number != null">
+                and car_number like "%"#{car_number}"%"
+            </if>
+        </where>
+    </select>
+
+    <!--    查找一个页面的数据-->
+    <select id="getItemsByUserIdAndCarNumberLike" resultType="car">
+        select * from smmcar.car
+        <where>
+            <if test="car_number != null">
+                car_number like "%"#{car_number}"%"
+            </if>
+            <if test="user_id != null">
+                and user_id like "%"#{user_id}"%"
+            </if>
+    </where>
+        limit #{begin},#{size}
+    </select>
+
+
+<!--    &lt;!&ndash;    查找一个页面的数据&ndash;&gt;-->
+<!--    <select id="getItemsByUserIdAndCarNumberLike" resultType="car">-->
+<!--        select smmcar.car.car_id, car_number, car_brand, car_status, carport, car_imge,-->
+<!--        smmcar.user.userName-->
+<!--        from smmcar.car LEFT JOIN smmcar.user-->
+<!--        ON smmcar.user.id= smmcar.car.user_id-->
+<!--        <where>-->
+<!--            <choose>-->
+<!--                <when test="userName != null">-->
+<!--                    smmcar.user.userName like "%"#{userName}"%"-->
+<!--                </when>-->
+<!--                <when test="car_number != null">-->
+<!--                    and smmcar.car.car_number like "%"#{car_number}"%"-->
+<!--                </when>-->
+<!--            </choose>-->
+<!--        </where>-->
+<!--        limit #{begin},#{size}-->
+<!--    </select>-->
+</mapper>

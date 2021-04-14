@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jie.mapper.CarportMapper">
+<!--    //****************************增删改*****************************//-->
+    <update id="updateCarport" parameterType="carport">
+        update smmcar.car_port set area=#{area}, carport=#{carport},
+         status=#{status}, car_number=#{car_number}, in_date=#{in_date}
+         where id=#{id}
+    </update>
+    <insert id="addCarport" parameterType="carport">
+        insert into smmcar.car_port(area, carport, status, car_number, in_date)
+        VALUES (#{area},#{carport},#{status},#{car_number},#{in_date})
+    </insert>
+    <delete id="deleteCarport">
+        delete from smmcar.car_port where id=#{id}
+    </delete>
+
+<!--    //****************************查*****************************//-->
+    <select id="queryCarportById" resultType="carport">
+        select * from smmcar.car_port where id=#{id}
+    </select>
+    <select id="queryCarportByCarport" resultType="carport">
+        select * from smmcar.car_port where carport=#{carport}
+    </select>
+
+<!--    //****************************分页*****************************//-->
+    <!--    查找总行数-->
+    <select id="getCountByCarportAndAreaLike" resultType="int" >
+        select count(*) from smmcar.car_port
+        <where>
+            <if test="carport != null">
+                carport like "%"#{carport}"%"
+            </if>
+            <if test="area != null">
+                and area like "%"#{area}"%"
+            </if>
+        </where>
+    </select>
+
+    <!--    查找一个页面的数据-->
+    <select id="getItemsByCarportAndAreaLike" resultType="carport">
+        select * from smmcar.car_port
+        <where>
+            <if test="carport != null">
+                carport like "%"#{carport}"%"
+            </if>
+            <if test="area != null">
+                and area like "%"#{area}"%"
+            </if>
+        </where>
+        limit #{begin},#{size}
+    </select>
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    设置log4j日志输出-->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+<!--    起别名，默认首字母小写，这样XXXMapper.xml的参数和返回值类型就不用写全类名-->
+    <typeAliases>
+        <package name="com.jie.pojo"/>
+    </typeAliases>
+
+</configuration>

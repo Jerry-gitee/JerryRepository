@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jie.mapper.CarFareMapper">
+<select id="queryCarFareById" resultType="carFare">
+    select * from smmcar.car_fare where id=#{id}
+</select>
+
+    <update id="updateCarFare" parameterType="java.math.BigDecimal">
+        update smmcar.car_fare set price=#{price} where id=1
+    </update>
+</mapper>
