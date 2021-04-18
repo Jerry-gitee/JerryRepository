@@ -1,5 +1,8 @@
 package com.jie.pojo;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
+import cn.afterturn.easypoi.excel.annotation.ExcelIgnore;
+
 import java.math.BigDecimal;
 
 /**
@@ -9,17 +12,47 @@ import java.math.BigDecimal;
  * @Date2020/12/18 0018 21:23
  * @Version 1.0
  **/
-
 public class ParkingRecord {
+    @ExcelIgnore
     private Integer id;
+    @Excel(name = "用户id")
     private Integer userId;
+    /**
+     *车牌号
+     */
+    @Excel(name = "车牌号")
     private String car_number;
+    /**
+     *入场时间
+     */
+    @Excel(name = "入场时间")
     private String in_date;
+    /**
+     *出场时间
+     */
+    @Excel(name = "出场时间")
     private String out_date;
-    private BigDecimal price;//收费标准
-    private Integer park_time;//停车时长、
-    private BigDecimal total_fare;//总的费用
-    private String carport;//停车位
+
+    /**
+     *收费标准
+     */
+    @Excel(name = "收费标准")
+    private BigDecimal price;
+    /**
+     *停车时长
+     */
+    @Excel(name = "停车时长")
+    private Integer park_time;
+    /**
+     *总的费用
+     */
+    @Excel(name = "总的费用")
+    private BigDecimal total_fare;
+    /**
+     *停车位
+     */
+    @Excel(name = "停车位")
+    private String carport;
 
     public ParkingRecord() {
     }
