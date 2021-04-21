@@ -4,6 +4,29 @@
 <head>
     <title>查看停车记录</title>
     <%@include file="/pages/common/head.jsp" %>
+    <script type="text/javascript">
+        $(function () {//文件加载之后
+
+            $("#exportExcel").click(function () {
+
+                $.ajax({
+                    url:'parkingRecord/exportParkingRecord',
+                    type:'post',
+                    dataType:'json',
+                    success:function(result){
+                        console.log(result);
+                        if (result) {
+                            alert("导出成功")
+                        }else {
+                            alert("导出失败")
+                        }
+                    }
+                });
+
+            });
+
+        });
+    </script>
 </head>
 <body>
 <jsp:include page="/pages/common/top.jsp"></jsp:include>
@@ -50,8 +73,10 @@
                     </c:forEach>
                 </table>
                 <%@include file="/pages/common/page_nav.jsp"%>
-                <div class="list-page">
+                <div  align="right">
+                    <input class="btn btn-primary btn6 m r10" id="exportExcel" value="导出停车记录" pa="${page.pageNo}" type="button" >
                 </div>
+
             </div>
         </form>
     </div>

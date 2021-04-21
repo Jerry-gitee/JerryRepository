@@ -2,7 +2,9 @@ package com.jie.pojo;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
 import cn.afterturn.easypoi.excel.annotation.ExcelIgnore;
+import cn.afterturn.easypoi.excel.annotation.ExcelTarget;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -12,7 +14,8 @@ import java.math.BigDecimal;
  * @Date2020/12/18 0018 21:23
  * @Version 1.0
  **/
-public class ParkingRecord {
+@ExcelTarget("parkingRecord")
+public class ParkingRecord implements Serializable {
     @ExcelIgnore
     private Integer id;
     @Excel(name = "用户id")
@@ -25,12 +28,12 @@ public class ParkingRecord {
     /**
      *入场时间
      */
-    @Excel(name = "入场时间")
+    @Excel(name = "入场时间",exportFormat = "yyyy-MM-dd HH:mm:ss", width = 20)
     private String in_date;
     /**
      *出场时间
      */
-    @Excel(name = "出场时间")
+    @Excel(name = "出场时间",exportFormat = "yyyy-MM-dd HH:mm:ss", width = 20)
     private String out_date;
 
     /**

@@ -1,9 +1,12 @@
 package com.jie.controller;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.jie.pojo.*;
 import com.jie.service.*;
 import com.jie.utils.CarStatus;
 import com.jie.utils.Json;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @ClassName ParkingRecordController
@@ -126,5 +133,17 @@ public class ParkingRecordController {
     //保存停车记录。
     parkingRecordService.saveParkingRecor(parkingRecord);
      return Json.toJson("pages/loginAndRegister/index.jsp");
+    }
+
+
+    @RequestMapping("/exportParkingRecord")
+    @ResponseBody
+    public String exportParkingRecord(HttpSession session){
+        Integer userid=null;
+        User sUser = (User) session.getAttribute("sUser");
+        if (sUser!=null){
+            userid=sUser.getId();
+        }
+        return Json.toJson(parkingRecordService.getParkingRecordByUserid(userid));
     }
 }

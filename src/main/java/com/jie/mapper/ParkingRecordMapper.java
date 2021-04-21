@@ -9,4 +9,5 @@ public interface ParkingRecordMapper {
     int saveParkingRecor(ParkingRecord parkingRecord);
     Integer getCountByUserIdAndCar_numberLike(@Param("userId") String userId, @Param("car_number")String car_number);
     List<ParkingRecord> getItemsByUserIdAndCar_numberLike(@Param("begin")int begin, @Param("userId")String userId, @Param("car_number")String car_number,@Param("size") Integer size);
+    List<ParkingRecord> getParkingRecordByUserid(@Param("userId")Integer userId);
 }

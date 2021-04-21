@@ -95,13 +95,13 @@
                             <th>需缴费金额：</th>
                             <td>
                                 <input class="common-text required" value='${parkingRecord.total_fare}' name="total_fare"
-                                       size="1" readonly="readonly" style="border:none;text-align: right;">/元
+                                       size="2" readonly="readonly" style="border:none;text-align: right;">/元
                             </td>
                         </tr>
                         <tr>
                             <th>当前余额：</th>
                             <td>
-                                <input class="common-text required" value='${sUser.balance}' size="1"
+                                <input class="common-text required" value='${sUser.balance}' size="2"
                                        readonly="readonly" style="border:none;text-align: right;">/元
                             </td>
                         </tr>

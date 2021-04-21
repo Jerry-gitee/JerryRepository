@@ -30,4 +30,12 @@
         </where>
         limit #{begin},#{size}
     </select>
+    <select id="getParkingRecordByUserid" resultType="com.jie.pojo.ParkingRecord">
+        select * from smmcar.parking_record
+        <where>
+        <if test="userId != null">
+            userId = #{userId}
+        </if>
+        </where>
+    </select>
 </mapper>
