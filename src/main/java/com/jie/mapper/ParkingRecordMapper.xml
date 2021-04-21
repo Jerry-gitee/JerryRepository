@@ -34,7 +34,7 @@
         select * from smmcar.parking_record
         <where>
         <if test="userId != null">
-            userId like #{userId}
+            userId = #{userId}
         </if>
         </where>
     </select>
