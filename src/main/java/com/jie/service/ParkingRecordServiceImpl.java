@@ -10,8 +10,12 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 
@@ -37,36 +41,29 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
         Integer count = parkingRecordMapper.getCountByUserIdAndCar_numberLike(userId, car_number);
         pageNo = PageUtils.IllegalpageNoHandle(pageNo, count);
         int begin = PageUtils.getBegin(pageNo);
-        List<ParkingRecord> parkingRecords = parkingRecordMapper.getItemsByUserIdAndCar_numberLike(begin, userId, car_number, Page.PAGE_SIZE);
+        List<ParkingRecord> parkingRecords = parkingRecordMapper.getItemsByUserIdAndCar_numberLike(begin, userId,
+                car_number, Page.PAGE_SIZE);
         return PageUtils.getPage(pageNo, count, parkingRecords);
     }
 
     @Override
-    public String getParkingRecordByUserid(Integer userId) {
+    public void getParkingRecordByUserid(Integer userId, HttpServletResponse response) throws IOException {
         List<ParkingRecord> parkingRecords = parkingRecordMapper.getParkingRecordByUserid(userId);
 
         Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("停车缴费记录", "缴费记录"),
                 ParkingRecord.class, parkingRecords);
 
-        FileOutputStream fos = null;
-        try {
+        response.setHeader("Content-Disposition",
+                "attachment;filename=" + URLEncoder.encode("停车缴费记录.xls", "UTF-8"));
+        ServletOutputStream outputStream = response.getOutputStream();
+        workbook.write(outputStream);
+        outputStream.close();
+        workbook.close();
+    }
 
-            fos = new FileOutputStream("C:/Users/Administrator/Desktop/停车记录.xls");
-            //导出数据
-            workbook.write(fos);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }
-        return "true";
+    @Override
+    public List<ParkingRecord> getParkingRecordByUserid2(Integer userid) {
+        return parkingRecordMapper.getParkingRecordByUserid(userid);
     }
 
 }
