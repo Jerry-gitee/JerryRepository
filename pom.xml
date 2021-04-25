@@ -111,6 +111,7 @@
 
         <!--    资源加载，防止资源加载不到-->
 <build>
+
 <resources>
     <resource>
         <directory>src/main/java</directory>
@@ -129,5 +130,9 @@
         <filtering>true</filtering>
     </resource>
 </resources>
+    <!-- 产生的构件的文件名，默认值是${artifactId}-${version}。 -->
+    <finalName>${artifactId}</finalName>
 </build>
+
+    <packaging>war</packaging>
 </project>

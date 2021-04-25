@@ -66,7 +66,7 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
             }
 
         }
-        return "ture";
+        return "true";
     }
 
 }

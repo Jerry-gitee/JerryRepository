@@ -48,7 +48,7 @@ public class CarController {
         //****************************图片上传*****************************//
         if (!car_imgeFile.isEmpty()) {
             String storePath = "D:\\javalab\\MyIDEAJavaSpringMVC\\smmcar\\web\\pages\\static\\images";//存放我们上传的文件路径
-
+//            String storePath = "/www/server/tomcat/webapps/smmcar/pages/static/images";
             String fileName = car_imgeFile.getOriginalFilename();
 
             File filepath = new File(storePath, fileName);
