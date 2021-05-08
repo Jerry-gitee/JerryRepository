@@ -28,7 +28,7 @@
             //给提交按钮绑定点击事件
 $("#recharge_button").click(function () {
     if ( $("#recharge_id").val()==""){
-        alert("请输入充值金额！！！")
+        alert("请输入充值金Post额！！！")
         return false;
     }
     if ( $("#recharge_id").val()<=0){

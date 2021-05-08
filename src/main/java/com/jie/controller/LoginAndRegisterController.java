@@ -5,6 +5,7 @@ import com.jie.pojo.User;
 import com.jie.service.AdminService;
 import com.jie.service.UserService;
 import com.jie.utils.Json;
+import com.jie.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,6 +51,22 @@ public class LoginAndRegisterController {
         }
         List list = new ArrayList<Object>();
         list.add(existsName);
+        return list;
+    }
+    /**
+     *判断用户密码是否正确
+     */
+    @RequestMapping("/ajaxVerifyPassword")
+    @ResponseBody
+    public List<Object> ajaxVerifyPassword(String name,String password) {
+        boolean verifyPassword = false;
+        User user = userService.queryByUsername(name);
+        boolean verify = PasswordUtil.verify(password, user.getUserPassword());
+        if (verify) {
+            verifyPassword = true;
+        }
+        List list = new ArrayList<Object>();
+        list.add(verifyPassword);
         return list;
     }
 
@@ -99,6 +116,7 @@ public class LoginAndRegisterController {
 
     @RequestMapping("/register")
     public String register(User user) {
+
         userService.addUser(user);
         return "../loginAndRegister/toLoginPage";
     }

@@ -49,7 +49,7 @@ public class UserController {
         BigDecimal balance = user.getBalance().add(new BigDecimal(recharge_amount));
         user.setBalance(balance);
         //修改用户
-        userService.updateUser(user);
+        userService.updateUserBalance(user);
         //用户改变session域中的值也要改变
         model.addAttribute("sUser",user);
         String url="pages/loginAndRegister/index.jsp";
@@ -126,8 +126,9 @@ public class UserController {
         //将余额加上用户充值的金额
         BigDecimal balance = user.getBalance().add(new BigDecimal(recharge_amount));
         user.setBalance(balance);
-        //修改用户
-        userService.updateUser(user);
+        //修改用户+
+
+        userService.updateUserBalance(user);
         String url="user/toManagementUserPage?pageNo="+pageNo;
         return Json.toJson(url);
     }

@@ -8,9 +8,11 @@
 <!--        c3p0数据库驱动-->
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
 <!--        访问的数据库url，参数数据库，时区，字符编码-->
-        <property name="jdbcUrl" value="jdbc:mysql://120.55.81.169:3306/smmcar?serverTimezone=GMT%2B8&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+<!--        <property name="jdbcUrl" value="jdbc:mysql://120.55.81.169:3306/smmcar?serverTimezone=GMT%2B8&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>-->
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/smmcar?serverTimezone=GMT%2B8&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;allowPublicKeyRetrieval=true"/>
 <!--        数据库的登入名和密码-->
-        <property name="user" value="smmcar"/>
+<!--        <property name="user" value="smmcar"/>-->
+        <property name="user" value="root"/>
         <property name="password" value="968426"/>
     </bean>
     <!--    sqlSessionFactory，用于创建sqlSession-->

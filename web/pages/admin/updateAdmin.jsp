@@ -26,7 +26,10 @@
                     alert('警告!!!,姓名不能为空！');
                     return false;
                 }
-                if ($("#adminPwd").val() == "") {
+                if ($("#adminOldPwd").val() == "") {
+                    alert('警告!!!, 旧密码不能为空！');
+                    return false;
+                } if ($("#adminPwd").val() == "") {
                     alert('警告!!!, 密码不能为空！');
                     return false;
                 }
@@ -36,10 +39,11 @@
                     dataType:'json',
                     data:$("#myform").serialize(),
                     success:function(result){
-                        console.log(result);
-                        if (result!=null) {//用户名是存在
+                        if (result!="false") {//用户名是存在
                             alert("修改成功");
                             window.location.href=result;
+                        }else {
+                            alert("旧密码错误，修改失败");
                         }
                     }
                 });
@@ -66,22 +70,32 @@
                     <input type="hidden" name="pageNo" value="${pageNo}"/>
                     <input type="hidden" name="id" value="${admin.id}"/>
                     <table class="insert-tab" width="100%">
+                        <input class="common-text required" value='${admin.id}' name="id"  type="hidden">
                         <tbody>
                         <tr>
                             <th><i class="require-red">*</i>管理员名称：</th>
                             <td>
                                 <input class="common-text required" id="adminName" placeholder="请输入管理员名称"
                                        value='${admin.adminName}' name="adminName"
-                                       size="50" value="" type="text">
+                                       size="50"  type="text">
                             </td>
                         </tr>
 
                         <tr>
                             <th>
-                                <i class="require-red"></i>密码：
+                                <i class="require-red">*</i>旧密码：
                             </th>
                             <td>
-                                <input class="common-text required" value="${admin.adminPassword}" id="adminPwd"
+                                <input class="common-text required" value="" id="adminOldPwd"
+                                       name="adminOldPwd" size="50" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <i class="require-red">*</i>新密码：
+                            </th>
+                            <td>
+                                <input class="common-text required" value="" id="adminPwd"
                                        name="adminPassword" size="50" type="text">
                             </td>
                         </tr>

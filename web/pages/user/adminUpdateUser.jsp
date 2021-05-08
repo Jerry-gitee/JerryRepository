@@ -105,7 +105,7 @@
                                     <i class="require-red"></i>密码：
                                 </th>
                                 <td>
-                                    <input class="common-text required" value="${user.userPassword}" id="pwdByAdmin"
+                                    <input class="common-text required" value="" id="pwdByAdmin"
                                             name="userPassword" size="50"  type="text">
                                 </td>
                             </tr>

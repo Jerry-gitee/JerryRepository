@@ -15,7 +15,7 @@
             </div>
             <div class="result-wrap">
                 <div class="result-content">
-                    <form  action="car/addAndUpdateCar" method="post" id="myform" name="myform"
+                    <form action="car/addAndUpdateCar" method="post" id="myform" name="myform"
                           enctype="multipart/form-data">
                         <input name="user_id" value="${car.user_id}" type="hidden"/>
                         <input name="car_status" value="${car.car_status}" type="hidden"/>
@@ -38,15 +38,17 @@
                                 </th>
                                 <td>
                                     <input class="common-text required"
-                                        name="car_brand" value="${car.car_brand}"
-                                           size="50"  type="text">
+                                           name="car_brand" value="${car.car_brand}"
+                                           size="50" type="text">
                                 </td>
                             </tr>
                             <tr>
                                 <th><i class="require-red"></i>请选择车辆照片：</th>
                                 <td>
-                                    <input class="common-text required" name="car_imgeFile" size="50"  type="file">
+                                    <input id="img" class="common-text required" name="car_imgeFile" size="50"
+                                           type="file">
                                 </td>
+                            </tr>
                             </tr>
                             <tr>
                                 <th>
@@ -59,7 +61,7 @@
                             <tr>
                                 <th></th>
                                 <td>
-                                    <input class="btn btn-primary btn6 m r10"  value="提交"
+                                    <input class="btn btn-primary btn6 m r10" value="提交"
                                            type="submit">
                                     <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
                                 </td>

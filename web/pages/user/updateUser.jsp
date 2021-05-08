@@ -9,7 +9,7 @@
             $("#name").blur(function () {
                 //获取到用户输入的值
                 let name = this.value;
-                if (name!=${sUser.userName}){
+                if (name!="${sUser.userName}"){
                 //转发到userServlet并调用ajaxExistsUsername方法判断用户名是否存在
                 $.post("loginAndRegister/existsName","name=" + name,function (data) {//回调函数，
                     console.log(data);
@@ -24,11 +24,17 @@
             //给旧密码绑定失去焦点事件，先判断用户是否输入，用户输入了如果不等于原来的密码，提示用户。
             $("#oldPwd").blur(function () {
                 let oldPwdText = $("#oldPwd").val();
+                let name="${sUser.userName}";
                 if (oldPwdText!=""){
-                if (oldPwdText !=${sessionScope.sUser.userPassword}) {
-                         alert("警告！！！密码不正确，请重新输入");
-                    $("#oldPwd").val("");
-                }}
+                    $.post("loginAndRegister/ajaxVerifyPassword?name=" + name+"&password="+oldPwdText,function
+                        (data) {//回调函数，
+                        if (!data[0]) {//用户名是存在
+                            alert('警告!!!,密码错误,请重新输入');
+                            //将输入框中的值设置为空
+                            $("#oldPwd").val('');
+                        }
+                    });
+              }
             });
             //给确认密码绑定失去焦点事件，当密码和确认密码不一致时，提示用户
             $("#confirm_Pwd").blur(function () {

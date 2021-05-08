@@ -11,10 +11,7 @@ import com.jie.utils.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +44,7 @@ public class CarController {
         String car_imge=car.getCar_imge();
         //****************************图片上传*****************************//
         if (!car_imgeFile.isEmpty()) {
-            String storePath = "D:\\javalab\\MyIDEAJavaSpringMVC\\smmcar\\web\\pages\\static\\images";//存放我们上传的文件路径
+            String storePath = "D:\\javalab\\car\\smmcar\\web\\pages\\static\\images";//存放我们上传的文件路径
 //            String storePath = "/www/server/tomcat/webapps/smmcar/pages/static/images";
             String fileName = car_imgeFile.getOriginalFilename();
 

@@ -4,6 +4,7 @@ import com.jie.pojo.Admin;
 import com.jie.pojo.Page;
 import com.jie.service.AdminService;
 import com.jie.utils.Json;
+import com.jie.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,10 +81,15 @@ public class AdminController {
     //修改管理员
     @RequestMapping("/upadteAdmin")
     @ResponseBody
-    public String upadteAdmin(Admin admin,int pageNo){
-        System.out.println(admin);
-        adminService.updateAdmin(admin);
-        String url="admin/toManagementAdminPage?pageNo="+pageNo;
+    public String upadteAdmin(Admin admin,int pageNo,Integer id,String adminOldPwd){
+        String url="false";
+        Admin admin1 = adminService.queryByAdminid(id);
+        boolean verify = PasswordUtil.verify(adminOldPwd, admin1.getAdminPassword());
+        if (verify){
+            adminService.updateAdmin(admin);
+            url="admin/toManagementAdminPage?pageNo="+pageNo;
+        }
+
         return Json.toJson(url);
     }
 

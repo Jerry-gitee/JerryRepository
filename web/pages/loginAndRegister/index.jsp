@@ -38,12 +38,12 @@
                            <span class="res-info">${sAdmin.adminName}</span>
                        </li>
 
-                       <li>
-                           <label class="res-lab">
-                               密码：
-                           </label>
-                           <span class="res-info">${sAdmin.adminPassword}</span>
-                       </li>
+<%--                       <li>--%>
+<%--                           <label class="res-lab">--%>
+<%--                               密码：--%>
+<%--                           </label>--%>
+<%--                           <span class="res-info">${sAdmin.adminPassword}</span>--%>
+<%--                       </li>--%>
                    </c:if>
 <%--                   如果为用户主页显示用户的基本信息 --%>
                     <c:if test="${sessionScope.type.equals('user')}">
@@ -61,12 +61,12 @@
                         <span class="res-info">${sUser.userName}</span>
                     </li>
 
-                    <li>
-                        <label class="res-lab">
-                            密码：
-                        </label>
-                        <span class="res-info">${sUser.userPassword}</span>
-                    </li>
+<%--                    <li>--%>
+<%--                        <label class="res-lab">--%>
+<%--                            密码：--%>
+<%--                        </label>--%>
+<%--                        <span class="res-info">${sUser.userPassword}</span>--%>
+<%--                    </li>--%>
 
                     <li>
                         <label class="res-lab">
